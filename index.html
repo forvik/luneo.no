@@ -6,6 +6,9 @@
 <title>Luneo – Booking gjort enkelt</title>
 <meta name="description" content="Luneo er bookingsystemet for norske aktivitetssentre – bowling, laserspill, escape room, gokart og trampolinepark. Fast lav månedspris, ingen prosent av salget. Test gratis i 3 måneder.">
 <link rel="canonical" href="https://luneo.no/">
+<link rel="alternate" hreflang="nb" href="https://luneo.no/">
+<link rel="alternate" hreflang="en" href="https://luneo.no/en/">
+<link rel="alternate" hreflang="x-default" href="https://luneo.no/">
 <meta property="og:title" content="Luneo – Booking gjort enkelt">
 <meta property="og:description" content="Luneo er bookingsystemet for norske aktivitetssentre – bowling, laserspill, escape room, gokart og trampolinepark. Fast lav månedspris, ingen prosent av salget. Test gratis i 3 måneder.">
 <meta property="og:type" content="website">
@@ -65,7 +68,17 @@
   .top nav{display:flex;gap:22px;font-size:.92rem;font-weight:600}
   .top nav a{text-decoration:none;color:var(--muted-dark)}
   .top nav a:hover,.top nav a:focus-visible{color:var(--white)}
-  @media (max-width:760px){.top nav{display:none}}
+  .top .right{display:flex;align-items:center;gap:16px}
+  .top .lang{display:flex;gap:6px;align-items:center}
+  .top .lang a{
+    display:inline-flex;align-items:center;justify-content:center;width:34px;height:26px;border-radius:5px;
+    opacity:.5;border:1px solid transparent;transition:opacity .15s ease,border-color .15s ease;
+  }
+  .top .lang a svg{width:22px;height:16px;display:block}
+  .top .lang a:hover,.top .lang a:focus-visible{opacity:1}
+  .top .lang a.active{opacity:1;border-color:rgba(255,255,255,.45)}
+  @media (max-width:760px){.top nav:not(.lang){display:none}}
+  @media (max-width:520px){.top .btn{padding:10px 12px;font-size:.85rem}}
 
   /* ---------- lysbilder ---------- */
   .slide{padding-block:clamp(64px,9vw,112px);padding-inline:24px}
@@ -333,11 +346,17 @@
       <a href="#igang">Kom i gang</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
-    <a class="btn primary" href="mailto:post@digikrutt.no?subject=Luneo%20%E2%80%93%20test%20i%203%20m%C3%A5neder">Test gratis i 3 måneder</a>
+    <div class="right">
+      <nav class="lang" aria-label="Språk">
+        <a class="active" href="index.html" lang="nb" aria-label="Norsk" title="Norsk" aria-current="true"><svg viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg></a>
+        <a href="en/" lang="en" aria-label="English" title="English"><svg viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="2" fill="#012169"/><path d="M0 0L22 16M22 0L0 16" stroke="#fff" stroke-width="3"/><path d="M0 0L22 16M22 0L0 16" stroke="#C8102E" stroke-width="1.2"/><rect x="8.5" width="5" height="16" fill="#fff"/><rect y="5.5" width="22" height="5" fill="#fff"/><rect x="9.5" width="3" height="16" fill="#C8102E"/><rect y="6.5" width="22" height="3" fill="#C8102E"/></svg></a>
+      </nav>
+      <a class="btn primary" href="mailto:post@digikrutt.no?subject=Luneo%20%E2%80%93%20test%20i%203%20m%C3%A5neder">Test gratis i 3 måneder</a>
+    </div>
   </div>
 </header>
 
-<main id="topp">
+<main id="topp" data-title="Luneo – Booking gjort enkelt">
 
 <!-- ================= HERO ================= -->
 <section class="slide dark hero" id="hero">
@@ -534,7 +553,7 @@
 
         <div class="addons">
           <p class="group-title">Skru på det dere trenger</p>
-          <ul id="addons">
+          <ul id="addons" data-base-label="Booking" data-cur-pre="" data-cur-suf=" kr">
             <li class="feat" data-price="199">
               <span class="toggle"><input type="checkbox" id="f-gavekort"><span class="track"></span></span>
               <div><div class="head"><label class="name" for="f-gavekort">Gavekort</label><span class="price">199 kr</span></div><div class="desc">Selg gavekort på nettsiden og i resepsjonen. Gjesten får det som PDF på e-post og bruker koden ved bestilling.</div></div>
@@ -647,16 +666,23 @@
 
 <script>
 (function(){
+  var root = (document.currentScript && document.currentScript.closest('[data-lang]')) || document;
+  var $ = function(sel){ return root.querySelector(sel); };
+
   /* ---- priskalkulator ---- */
   var BASE = 200;
-  var list = document.getElementById('addons');
-  var totalEl = document.getElementById('total');
-  var linesEl = document.getElementById('lines');
+  var list = $('#addons');
+  var totalEl = $('#total');
+  var linesEl = $('#lines');
+  var PRE = list.getAttribute('data-cur-pre') || '';
+  var SUF = list.getAttribute('data-cur-suf') || '';
+  var LABEL = list.getAttribute('data-base-label') || 'Booking';
   var fmt = function(n){ return n.toLocaleString('nb-NO'); };
+  var money = function(n){ return PRE + fmt(n) + SUF; };
 
   function render(){
     var sum = BASE;
-    var html = '<li class="base"><span>Booking</span><span>' + fmt(BASE) + ' kr</span></li>';
+    var html = '<li class="base"><span>' + LABEL + '</span><span>' + money(BASE) + '</span></li>';
     var items = list.querySelectorAll('.feat');
     for (var i = 0; i < items.length; i++){
       var li = items[i];
@@ -665,7 +691,7 @@
       if (cb.checked){
         var p = parseInt(li.getAttribute('data-price'), 10);
         sum += p;
-        html += '<li><span>' + li.querySelector('.name').textContent + '</span><span>' + fmt(p) + ' kr</span></li>';
+        html += '<li><span>' + li.querySelector('.name').textContent + '</span><span>' + money(p) + '</span></li>';
       }
     }
     totalEl.textContent = fmt(sum);
@@ -675,19 +701,23 @@
   render();
 
   /* ---- hero-film: start avspilling også der autoplay er nølende ---- */
-  var vid = document.querySelector('.hero .film video');
+  var vid = $('.hero .film video');
   if (vid){ var p = vid.play(); if (p && p.catch){ p.catch(function(){}); } }
 
   /* ---- undersider: personvern og kjøpsvilkår ---- */
-  var main = document.querySelector('main');
-  var pages = { personvern: document.getElementById('personvern'), kjopsvilkar: document.getElementById('kjopsvilkar') };
+  var main = $('main');
+  var pages = {};
+  var legal = root.querySelectorAll('section.legal');
+  for (var j = 0; j < legal.length; j++){ pages[legal[j].id] = legal[j]; }
   function route(){
+    if (!legal.length) return;
     var h = (location.hash || '').replace('#','');
     var page = pages[h];
     for (var k in pages){ pages[k].hidden = (pages[k] !== page); }
     main.hidden = !!page;
-    if (page){ window.scrollTo(0,0); document.title = (h === 'personvern' ? 'Personvern' : 'Kjøpsvilkår') + ' – Luneo'; }
-    else { document.title = 'Luneo'; }
+    if (root !== document && root.hidden) return;
+    if (page){ window.scrollTo(0,0); document.title = page.getAttribute('data-title') || document.title; }
+    else { document.title = main.getAttribute('data-title') || document.title; }
   }
   window.addEventListener('hashchange', route);
   route();
