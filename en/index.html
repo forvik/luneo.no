@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luneo – Booking made simple</title>
+<meta name="description" content="Luneo is the booking system for activity centres – bowling, laser tag, escape rooms, go-karts and trampoline parks. One fixed low monthly price, no percentage of your sales. Free 3-month trial.">
+<link rel="canonical" href="https://luneo.no/en/">
+<link rel="alternate" hreflang="nb" href="https://luneo.no/">
+<link rel="alternate" hreflang="en" href="https://luneo.no/en/">
+<link rel="alternate" hreflang="x-default" href="https://luneo.no/">
+<meta property="og:title" content="Luneo – Booking made simple">
+<meta property="og:description" content="Luneo is the booking system for activity centres – bowling, laser tag, escape rooms, go-karts and trampoline parks. One fixed low monthly price, no percentage of your sales. Free 3-month trial.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://luneo.no/en/">
+<meta property="og:locale" content="en_GB">
+<meta name="theme-color" content="#1B222D">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Mulish:wght@400;600;700&display=swap">
+<style>
+  :root{
+    --ink:#1B222D;        /* mørk grunn og sort skrift */
+    --ink-2:#232C39;      /* løftet flate på mørk grunn */
+    --ink-line:#34404E;   /* strek på mørk grunn */
+    --white:#FFFFFF;
+    --foam:#F5F0F6;       /* lys flate med et lite skjær av aksenten */
+    --foam-line:#E2D8E4;
+    --accent:#C010C5;     /* aksent – knapper, fyll, streker */
+    --accent-dark:#9A0D9E;/* aksent-tekst på hvit grunn */
+    --accent-tint:#E36BE7;/* aksent-tekst på mørk grunn */
+    --muted-dark:#A9B6C0; /* dempet tekst på mørk grunn */
+    --muted-light:#5B6873;/* dempet tekst på hvit grunn */
+    --display:"Schibsted Grotesk",ui-sans-serif,system-ui,"Helvetica Neue",Arial,sans-serif;
+    --body:"Mulish",ui-sans-serif,system-ui,"Helvetica Neue",Arial,sans-serif;
+    --max:1120px;
+    color-scheme: light;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--ink);color:var(--white);
+    font-family:var(--body);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+  h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:800}
+  h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:800}
+  h3{font-size:1.2rem;font-weight:700}
+  p{margin:0}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  ul{margin:0;padding:0;list-style:none}
+  [hidden]{display:none!important}
+
+  /* ---------- toppstripe ---------- */
+  .top{
+    position:sticky;top:0;z-index:20;
+    background:rgba(27,34,45,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--ink-line);
+  }
+  .top .in{
+    max-width:var(--max);margin:0 auto;padding:12px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .top img{height:34px;width:auto}
+  .top nav{display:flex;gap:22px;font-size:.92rem;font-weight:600}
+  .top nav a{text-decoration:none;color:var(--muted-dark)}
+  .top nav a:hover,.top nav a:focus-visible{color:var(--white)}
+  .top .right{display:flex;align-items:center;gap:16px}
+  .top .lang{display:flex;gap:6px;align-items:center}
+  .top .lang a{
+    display:inline-flex;align-items:center;justify-content:center;width:34px;height:26px;border-radius:5px;
+    opacity:.5;border:1px solid transparent;transition:opacity .15s ease,border-color .15s ease;
+  }
+  .top .lang a svg{width:22px;height:16px;display:block}
+  .top .lang a:hover,.top .lang a:focus-visible{opacity:1}
+  .top .lang a.active{opacity:1;border-color:rgba(255,255,255,.45)}
+  @media (max-width:760px){.top nav:not(.lang){display:none}}
+  @media (max-width:520px){.top .btn{padding:10px 12px;font-size:.85rem}}
+
+  /* ---------- lysbilder ---------- */
+  .slide{padding-block:clamp(64px,9vw,112px);padding-inline:24px}
+  .slide.dark{background:var(--ink);color:var(--white)}
+  .slide.light{background:var(--white);color:var(--ink)}
+  .slide.foam{background:var(--foam);color:var(--ink)}
+  .in{max-width:var(--max);margin:0 auto}
+  .eyebrow{
+    font-family:var(--display);font-weight:700;font-size:.8rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--accent-dark);
+    display:flex;align-items:center;gap:12px;margin-bottom:22px;
+  }
+  .dark .eyebrow{color:var(--accent-tint)}
+  .eyebrow::before{content:"";width:28px;height:2px;background:var(--accent)}
+  .lead{font-size:clamp(1.1rem,1.6vw,1.3rem);max-width:60ch;line-height:1.55}
+  .dark .lead{color:var(--muted-dark)}
+  .light .lead,.foam .lead{color:var(--muted-light)}
+  .dark .lead strong{color:var(--white);font-weight:700}
+  .cols{display:grid;gap:clamp(28px,4vw,64px);grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}
+  @media (max-width:820px){.cols{grid-template-columns:1fr}}
+
+  /* ---------- knapper ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--display);font-weight:700;font-size:1rem;
+    padding:14px 22px;border-radius:6px;text-decoration:none;
+    border:2px solid transparent;transition:transform .15s ease,background .15s ease;
+  }
+  .btn:focus-visible{outline:3px solid var(--accent-tint);outline-offset:3px}
+  .btn.primary{background:var(--accent);color:var(--white)}
+  .btn.primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+  .btn.ghost{border-color:rgba(255,255,255,.35);color:var(--white)}
+  .btn.ghost:hover{border-color:var(--white)}
+  .light .btn.ghost,.foam .btn.ghost{border-color:var(--ink);color:var(--ink)}
+
+  /* ---------- hero med film ---------- */
+  .hero{position:relative;overflow:hidden;padding-block:clamp(96px,14vw,180px);isolation:isolate}
+  .hero .film{position:absolute;inset:0;z-index:-2;background:var(--ink)}
+  .hero .film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .hero .shade{
+    position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(90deg,rgba(27,34,45,.86) 0%,rgba(27,34,45,.66) 55%,rgba(27,34,45,.4) 100%);
+  }
+  .hero h1{max-width:21ch;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+  .hero .lead{margin-top:26px;color:#D6DEE5}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+  .fits{margin-top:64px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18)}
+  .fits .fits-label{
+    display:flex;align-items:center;gap:12px;margin-bottom:16px;
+    font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-tint);
+  }
+  .fits .fits-label::before{content:"";width:28px;height:2px;background:var(--accent)}
+  .fits ul{display:flex;flex-wrap:wrap;gap:10px}
+  .fits li{
+    font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--white);
+    padding:10px 18px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(27,34,45,.45);
+  }
+  .fits .more{margin-top:14px;color:#D6DEE5;font-size:.95rem}
+
+  /* ---------- fakta-stripe ---------- */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink-line)}
+  .facts > div{padding:28px 24px 28px 0;border-right:1px solid var(--ink-line)}
+  .facts > div:last-child{border-right:0}
+  .facts > div + div{padding-left:24px}
+  .facts b{display:block;font-family:var(--display);font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums}
+  .facts span{color:var(--muted-dark);font-size:.95rem}
+  @media (max-width:900px){.facts{grid-template-columns:repeat(2,1fr)}.facts > div:nth-child(2){border-right:0}.facts > div:nth-child(3){padding-left:0}.facts > div:nth-child(-n+2){border-bottom:1px solid var(--ink-line)}}
+  @media (max-width:520px){
+    .facts{grid-template-columns:1fr}
+    .facts > div{border-right:0;border-bottom:1px solid var(--ink-line);padding:20px 0}
+    .facts > div + div{padding-left:0}
+    .facts > div:last-child{border-bottom:0}
+  }
+
+  /* ---------- problemer ---------- */
+  .problems{display:grid;gap:0}
+  .problem{
+    display:grid;grid-template-columns:auto 1fr;gap:20px;
+    padding:26px 0;border-top:1px solid var(--foam-line);
+  }
+  .problem:last-child{border-bottom:1px solid var(--foam-line)}
+  .problem .mark{
+    width:44px;height:44px;border-radius:50%;background:var(--foam);
+    display:grid;place-items:center;color:var(--accent-dark);flex:none;
+  }
+  .problem .mark svg{width:22px;height:22px}
+  .problem h3{margin-bottom:8px}
+  .problem p{color:var(--muted-light)}
+
+  /* ---------- tre flater ---------- */
+  .surfaces{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+  .surface{
+    background:var(--ink-2);border:1px solid var(--ink-line);border-radius:10px;
+    padding:26px 24px 28px;display:flex;flex-direction:column;gap:12px;
+  }
+  .surface .who{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-tint);font-weight:700;font-family:var(--display)}
+  .surface p{color:var(--muted-dark)}
+  .surface ul{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .surface li{font-size:.85rem;padding:5px 10px;border-radius:999px;border:1px solid var(--ink-line);color:var(--muted-dark)}
+  @media (max-width:820px){.surfaces{grid-template-columns:1fr}}
+  .duo{
+    margin-top:40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;
+    border-top:1px solid var(--ink-line);padding-top:40px;
+  }
+  .duo h3{margin-bottom:10px}
+  .duo p{color:var(--muted-dark)}
+  .duo pre{
+    margin:0;background:#0F141B;border:1px solid var(--ink-line);border-radius:8px;
+    padding:18px 20px;font:.85rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    color:#C9D6DE;overflow-x:auto;
+  }
+  .duo pre .t{color:var(--accent-tint)}
+  .duo pre .a{color:#8FC7D3}
+  @media (max-width:820px){.duo{grid-template-columns:1fr}}
+  .pay{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .pay li{font-family:var(--display);font-weight:700;font-size:.9rem;padding:8px 14px;border-radius:6px;background:var(--ink-2);border:1px solid var(--ink-line)}
+
+  /* ---------- argumenter ---------- */
+  .args{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;margin-top:36px}
+  .arg{padding:22px 0;border-top:1px solid var(--foam-line)}
+  .arg h3{margin-bottom:6px;font-size:1.1rem}
+  .arg p{color:var(--muted-light);font-size:.97rem}
+  .arg .log{
+    margin-top:10px;display:inline-block;font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:var(--white);color:var(--ink);padding:6px 10px;border-radius:5px;border:1px solid var(--foam-line);
+  }
+  @media (max-width:900px){.args{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:600px){.args{grid-template-columns:1fr}}
+
+  /* ---------- pris ---------- */
+  .price-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
+  .bigprice{font-family:var(--display);font-weight:800;line-height:.9;font-variant-numeric:tabular-nums;text-align:right}
+  .bigprice .n{font-size:clamp(4.5rem,12vw,9rem);letter-spacing:-.03em}
+  .bigprice .u{display:block;font-size:1.05rem;color:var(--muted-dark);font-weight:700;margin-top:10px;letter-spacing:0}
+  @media (max-width:820px){.price-head{grid-template-columns:1fr}.bigprice{text-align:left}}
+  .promises{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+  .promise{border-top:2px solid var(--accent);padding-top:16px}
+  .promise b{display:block;font-family:var(--display);font-size:1.15rem;margin-bottom:6px}
+  .promise p{color:var(--muted-dark);font-size:.97rem}
+  @media (max-width:820px){.promises{grid-template-columns:1fr}}
+
+  /* ---------- kalkulator ---------- */
+  .builder{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:36px;margin-top:56px;align-items:start}
+  @media (max-width:960px){.builder{grid-template-columns:1fr}}
+  .group-title{
+    font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted-dark);margin:0 0 14px;
+  }
+  .included{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .included li{
+    display:flex;gap:10px;align-items:flex-start;min-width:0;
+    background:var(--ink-2);border:1px solid var(--ink-line);border-radius:8px;padding:14px 16px;
+  }
+  .included li > div{min-width:0}
+  .included .name{font-family:var(--display);font-weight:700;font-size:.98rem;line-height:1.25}
+  .included .desc{color:var(--muted-dark);font-size:.86rem;margin-top:3px;line-height:1.45;overflow-wrap:anywhere}
+  .tick{width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--white);display:grid;place-items:center;flex:none;margin-top:1px}
+  .tick svg{width:12px;height:12px}
+  @media (max-width:480px){.included{grid-template-columns:1fr}}
+
+  .addons{margin-top:32px}
+  .addons ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  @media (max-width:640px){.addons ul{grid-template-columns:1fr}}
+  .feat{
+    display:grid;grid-template-columns:auto 1fr;gap:12px 12px;align-items:start;
+    background:var(--ink-2);border:1px solid var(--ink-line);border-radius:8px;padding:14px 16px;
+    transition:border-color .15s ease;
+  }
+  .feat.on{border-color:var(--accent)}
+  .feat .head{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .feat .name{font-family:var(--display);font-weight:700;font-size:1rem;cursor:pointer}
+  .feat .desc{color:var(--muted-dark);font-size:.86rem;margin-top:4px;line-height:1.45}
+  .feat .price{font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.95rem}
+  .feat.on .price{color:var(--accent-tint)}
+  .toggle{position:relative;width:42px;height:24px;margin-top:1px;flex:none}
+  .toggle input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+  .toggle .track{position:absolute;inset:0;border-radius:999px;background:var(--ink-line);transition:background .15s ease}
+  .toggle .track::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--white);transition:transform .15s ease}
+  .toggle input:checked + .track{background:var(--accent)}
+  .toggle input:checked + .track::after{transform:translateX(18px)}
+  .toggle input:focus-visible + .track{outline:3px solid var(--accent-tint);outline-offset:2px}
+  .custom{
+    margin-top:14px;padding:16px 18px;border:1px dashed var(--ink-line);border-radius:8px;
+    color:var(--muted-dark);font-size:.95rem;display:flex;gap:12px;align-items:flex-start;
+  }
+  .custom b{color:var(--white);font-family:var(--display)}
+
+  .summary{
+    position:sticky;top:80px;
+    background:var(--ink-2);border:1px solid var(--ink-line);border-radius:12px;padding:26px;
+  }
+  .summary .group-title{color:var(--accent-tint)}
+  .summary .total{font-family:var(--display);font-weight:800;font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-.02em;font-size:clamp(3rem,6vw,4.2rem)}
+  .summary .total small{font-size:1rem;font-weight:700;color:var(--muted-dark);letter-spacing:0;margin-left:6px}
+  .summary .vat{margin-top:6px;font-size:.85rem;color:var(--muted-dark)}
+  .summary .lines{margin-top:18px;border-top:1px solid var(--ink-line)}
+  .summary .lines li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--ink-line);font-size:.93rem;font-variant-numeric:tabular-nums}
+  .summary .lines li span:last-child{font-weight:700;font-family:var(--display)}
+  .summary .lines li.base span:first-child{font-weight:700}
+  .summary .trial{
+    margin-top:18px;display:flex;gap:12px;align-items:flex-start;
+    background:rgba(192,16,197,.12);border:1px solid rgba(227,107,231,.4);border-radius:8px;padding:14px 16px;font-size:.93rem;
+  }
+  .summary .trial b{color:var(--accent-tint)}
+  .summary .btn{margin-top:18px;width:100%;justify-content:center}
+  .summary .note{margin-top:12px;font-size:.83rem;color:var(--muted-dark)}
+
+  /* ---------- kom i gang ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px;counter-reset:step}
+  .step{border-top:2px solid var(--ink);padding-top:18px;counter-increment:step}
+  .step::before{content:counter(step);display:block;font-family:var(--display);font-weight:800;font-size:2rem;color:var(--accent-dark);line-height:1;margin-bottom:12px}
+  .step h3{margin-bottom:8px;font-size:1.1rem}
+  .step p{color:var(--muted-light);font-size:.97rem}
+  .step code{font:.9em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--white);padding:2px 6px;border-radius:4px;border:1px solid var(--foam-line)}
+  @media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.steps{grid-template-columns:1fr}}
+  .extras{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
+  .extra{background:var(--white);border:1px solid var(--foam-line);border-radius:10px;padding:24px}
+  .extra h3{margin-bottom:8px}
+  .extra p{color:var(--muted-light)}
+  .extra a{color:var(--accent-dark);font-weight:700;text-decoration:none;border-bottom:2px solid var(--foam-line)}
+  @media (max-width:760px){.extras{grid-template-columns:1fr}}
+
+  /* ---------- kontakt / om ---------- */
+  .about{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:start}
+  @media (max-width:820px){.about{grid-template-columns:1fr}}
+  .about .lead{margin-top:22px}
+  .contact{background:var(--ink-2);border:1px solid var(--ink-line);border-radius:12px;padding:28px}
+  .contact h3{margin-bottom:6px}
+  .contact p{color:var(--muted-dark)}
+  .contact .btn{margin-top:22px}
+  .contact .meta{margin-top:22px;padding-top:18px;border-top:1px solid var(--ink-line);font-size:.92rem;display:grid;gap:6px}
+  .contact .meta a{color:var(--white);text-decoration:none;border-bottom:1px solid var(--accent)}
+  .bak{margin-top:56px;padding-top:28px;border-top:1px solid var(--ink-line);color:var(--muted-dark);max-width:70ch;font-size:.97rem}
+  .bak a{color:var(--white);text-decoration:none;border-bottom:1px solid var(--accent)}
+
+  footer{background:var(--ink);color:var(--muted-dark);border-top:1px solid var(--ink-line);padding:28px 24px;font-size:.88rem}
+  footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;align-items:center}
+  footer img{height:22px;width:auto;opacity:.85}
+  footer nav{display:flex;gap:18px;flex-wrap:wrap}
+  footer nav a{text-decoration:none;color:var(--muted-dark)}
+  footer nav a:hover,footer nav a:focus-visible{color:var(--white)}
+
+  /* ---------- juridiske sider ---------- */
+  .legal{background:var(--white);color:var(--ink);padding-block:64px 96px;padding-inline:24px}
+  .legal .in{max-width:760px}
+  .legal .back{display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:var(--accent-dark);font-weight:700;font-size:.95rem;margin-bottom:28px}
+  .legal h1{font-size:clamp(2rem,4vw,2.8rem)}
+  .legal .meta{color:var(--muted-light);margin-top:10px;font-size:.95rem}
+  .legal h2{font-size:1.35rem;margin-top:40px;margin-bottom:10px}
+  .legal p{margin-top:10px;max-width:68ch}
+  .legal ul{margin-top:10px;padding-left:20px;list-style:disc;max-width:68ch}
+  .legal li{margin-top:4px}
+  .legal a{color:var(--accent-dark)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="in">
+    <a href="#topp" aria-label="Luneo – back to top"><img src="../img/luneo-logo-hvit.webp" alt="Luneo.no – Booking made simple"></a>
+    <nav aria-label="Sections">
+      <a href="#industry">Industry</a>
+      <a href="#product">Product</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#get-started">Get started</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="right">
+      <nav class="lang" aria-label="Language">
+        <a href="../" lang="nb" aria-label="Norsk" title="Norsk"><svg viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="2" fill="#BA0C2F"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205B"/><rect y="7" width="22" height="2" fill="#00205B"/></svg></a>
+        <a class="active" href="index.html" lang="en" aria-label="English" title="English" aria-current="true"><svg viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="2" fill="#012169"/><path d="M0 0L22 16M22 0L0 16" stroke="#fff" stroke-width="3"/><path d="M0 0L22 16M22 0L0 16" stroke="#C8102E" stroke-width="1.2"/><rect x="8.5" width="5" height="16" fill="#fff"/><rect y="5.5" width="22" height="5" fill="#fff"/><rect x="9.5" width="3" height="16" fill="#C8102E"/><rect y="6.5" width="22" height="3" fill="#C8102E"/></svg></a>
+      </nav>
+      <a class="btn primary" href="mailto:post@digikrutt.no?subject=Luneo%20%E2%80%93%203-month%20free%20trial">Free 3-month trial</a>
+    </div>
+  </div>
+</header>
+
+<main id="top" data-title="Luneo – Booking made simple">
+
+<!-- ================= HERO ================= -->
+<section class="slide dark hero" id="hero">
+  <div class="film" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="../img/bakgrunn.jpg"><source src="../img/bakgrunn.mp4" type="video/mp4"></video>
+  </div>
+  <div class="shade" aria-hidden="true"></div>
+  <div class="in">
+    <h1>The booking system for the activity industry. Built by people who work in it.</h1>
+    <p class="lead">Bowling alleys, laser tag arenas, escape rooms, go-kart tracks and trampoline parks sell time on lanes and rooms – often several at once. Luneo is built for exactly that, by people who have run activity centres for more than ten years.</p>
+    <div class="cta">
+      <a class="btn primary" href="#pricing">See what it costs</a>
+      <a class="btn ghost" href="#product">What you get</a>
+    </div>
+    <div class="fits">
+      <p class="fits-label">Made for</p>
+      <ul aria-label="Industries Luneo is made for">
+        <li>Bowling</li><li>Laser tag</li><li>Escape rooms</li><li>Go-karts</li><li>Trampoline parks</li><li>Minigolf</li><li>Curling</li><li>Paintball</li><li>Climbing</li>
+      </ul>
+      <p class="more">…and anyone else who sells time on lanes, rooms and equipment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAKTA ================= -->
+<section class="slide dark" style="padding-block:0 56px">
+  <div class="in facts">
+    <div><b>10+ years</b><span>in the activity industry before the first line of code was written</span></div>
+    <div><b>NOK 200</b><span>per month ex. VAT for the booking itself. No percentage of your sales.</span></div>
+    <div><b>3 months</b><span>free trial for everyone</span></div>
+    <div><b>NO / EN</b><span>Norwegian and English – for Norwegian and international guests</span></div>
+  </div>
+</section>
+
+<!-- ================= BRANSJEN ================= -->
+<section class="slide light" id="industry">
+  <div class="in cols">
+    <div>
+      <p class="eyebrow">Why Luneo</p>
+      <h2>We have worked the front desk ourselves.</h2>
+      <p class="lead" style="margin-top:20px">We have run activity centres in Norway for more than ten years. We have used the usual booking systems, and we know where they fall short. That is why we also know what a good booking system for this industry needs to include.</p>
+    </div>
+    <div class="problems">
+      <div class="problem">
+        <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="8" height="16" rx="1.5"/><rect x="13" y="4" width="8" height="16" rx="1.5"/></svg></div>
+        <div>
+          <h3>One booking occupies several units at once</h3>
+          <p>Eight people bowling means two lanes. A birthday package is a lane from 16:00 and a room from 17:00. Ordinary booking systems cannot handle that. Luneo assigns the units itself, holds them, and releases them if the booking falls through.</p>
+        </div>
+      </div>
+      <div class="problem">
+        <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M4 9h16"/><path d="M8 13h8M8 16h5"/></svg></div>
+        <div>
+          <h3>You already have a website you like</h3>
+          <p>Booking should plug into it, not replace it. Luneo lives on your own address, in your colours and under your name. Nothing the guest sees carries our name.</p>
+        </div>
+      </div>
+      <div class="problem">
+        <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></div>
+        <div>
+          <h3>VAT has to be right all the way through</h3>
+          <p>Every activity has its own rate, and in a package the food share is 25 % while the rest follows the activity. It carries unchanged from the price list to the payment window to the accounting report.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUKTET ================= -->
+<section class="slide dark" id="product">
+  <div class="in">
+    <p class="eyebrow">What you get</p>
+    <h2>Your own booking system, on your own address.</h2>
+    <p class="lead" style="margin-top:20px">You get <strong>booking.yourdomain.com</strong> or <strong>name.luneo.no</strong> – with your own name, logo, colours and wording. That is not a setting; it is how the system is built. Three surfaces are included, in Norwegian and English.</p>
+
+    <div class="surfaces">
+      <div class="surface">
+        <span class="who">For the guest</span>
+        <h3>The booking pages</h3>
+        <p>Where the guest books, changes and pays – on mobile or desktop. Every guest receives an e-mail confirmation with a link to their own booking.</p>
+        <ul><li>Reservations</li><li>Gift cards</li><li>Loyalty club</li><li>Waiting list</li><li>“My booking”</li></ul>
+      </div>
+      <div class="surface">
+        <span class="who">For the staff</span>
+        <h3>Back office</h3>
+        <p>Everything the staff needs to run the day and the business. All of it can be changed by you.</p>
+        <ul><li>Day plan</li><li>Bookings</li><li>Prices</li><li>Packages</li><li>Reports</li></ul>
+      </div>
+      <div class="surface">
+        <span class="who">For the venue</span>
+        <h3>The board</h3>
+        <p>A screen showing who is playing on which lane right now, and who is up next. Just a browser on a TV – always available. The QR code for the waiting list can be switched on and off.</p>
+        <ul><li>Lane overview</li><li>Up next</li><li>Waiting list (optional)</li></ul>
+      </div>
+    </div>
+
+    <div class="duo">
+      <div>
+        <h3>The guest manages their own booking</h3>
+        <p>The e-mail confirmation contains a link to the booking. There the guest can change the number of people, add extra products, food and extras, or cancel – right up to the deadline you set, for example 48 hours before. That means fewer phone calls to the front desk.</p>
+      </div>
+      <div>
+        <h3>Online payment through Dintero</h3>
+        <p>We connect online payment through Dintero, so guests pay the way they prefer. Good transaction rates have been negotiated.</p>
+        <ul class="pay" aria-label="Payment methods"><li>Vipps</li><li>Credit cards</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li><li>and more</li></ul>
+      </div>
+    </div>
+
+    <div class="duo">
+      <div>
+        <h3>Booking can be embedded straight into your website</h3>
+        <p>Two lines pasted into your own website, and the form sits right inside your own page – in your colours, light or dark, without the guest ever leaving your site. No tracking, no cookies. Only websites you have registered yourself are allowed to embed the booking.</p>
+      </div>
+      <pre aria-label="Embed example"><code><span class="t">&lt;script</span> <span class="a">src</span>="https://booking.yourdomain.com/embed.js"<span class="t">&gt;&lt;/script&gt;</span>
+<span class="t">&lt;div</span> <span class="a">data-luneo</span>="booking"<span class="t">&gt;&lt;/div&gt;</span></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARGUMENTER ================= -->
+<section class="slide foam">
+  <div class="in">
+    <p class="eyebrow">What makes the job easier</p>
+    <h2>Built around everyday life in an activity centre.</h2>
+    <div class="args">
+      <div class="arg">
+        <h3>Booking assigns the lanes itself</h3>
+        <p>The guest picks a time and a group size; the system works out how many units that takes and which ones are free. Staff can override whenever they want.</p>
+      </div>
+      <div class="arg">
+        <h3>Packages that hold several things in sequence</h3>
+        <p>Birthday: lane 16–17, room 17–18. The planner makes it all fit and reserves everything in one go.</p>
+      </div>
+      <div class="arg">
+        <h3>Request or instant booking</h3>
+        <p>Your choice, and it can be set per package. Some want to review a Christmas party before saying yes; nobody wants to review two people on a lane on a Tuesday.</p>
+      </div>
+      <div class="arg">
+        <h3>Norwegian and English</h3>
+        <p>Written in Norwegian by people who know the industry – not translated. International guests get the whole booking flow in English.</p>
+      </div>
+      <div class="arg">
+        <h3>Everything can be changed by you</h3>
+        <p>Prices, opening hours, packages, customer groups, form fields, the texts guests read, colours, logo. Not a support ticket.</p>
+      </div>
+      <div class="arg">
+        <h3>The log shows who did what</h3>
+        <p>Every change to a booking, with who and when.</p>
+        <span class="log">Guests: 4 → 6 · Lanes: Lane 1 → Lane 1, Lane 2</span>
+      </div>
+      <div class="arg">
+        <h3>Personal data cleans itself up</h3>
+        <p>Old bookings are archived and deleted after retention periods you set yourself.</p>
+      </div>
+      <div class="arg">
+        <h3>No app, no installation</h3>
+        <p>Everything is web pages that work on phones, tablets, desktops and the TV in your venue.</p>
+      </div>
+      <div class="arg">
+        <h3>On your own domain</h3>
+        <p>Booking lives on booking.yourdomain.com if you like, and looks like your website.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRIS ================= -->
+<section class="slide dark" id="pricing">
+  <div class="in">
+    <div class="price-head">
+      <div>
+        <p class="eyebrow">Pricing</p>
+        <h2>One fixed, low monthly price. Not a single krone of your revenue.</h2>
+        <p class="lead" style="margin-top:20px">The booking itself costs NOK 200 per month ex. VAT. That is the entire base price. Anything beyond that you buy one feature at a time, in the back office, when you need it – and switch off just as easily.</p>
+      </div>
+      <div class="bigprice"><span class="n">200</span><span class="u">NOK / month ex. VAT for booking</span></div>
+    </div>
+
+    <div class="promises">
+      <div class="promise"><b>No percentage of sales</b><p>Others take a cut of every booking. We take a fixed amount, however well you do.</p></div>
+      <div class="promise"><b>The price is locked the day you switch on</b><p>The price and terms in force that day are stored, and cannot be changed afterwards without it showing.</p></div>
+      <div class="promise"><b>Cancelling is one button</b><p>The feature runs to the end of the month, then it is gone. No call to support.</p></div>
+    </div>
+
+    <div class="builder">
+      <div>
+        <p class="group-title">Always included – no extra charge</p>
+        <ul class="included">
+          <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></span><div><div class="name">Revenue report</div><div class="desc">Per day, week or month, broken down by activity and customer group, with VAT. Export to PDF and Excel.</div></div></li>
+          <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></span><div><div class="name">Waiting list</div><div class="desc">Guests queue up from their phone. The QR code on the board can be switched on and off.</div></div></li>
+          <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></span><div><div class="name">Staff accounts</div><div class="desc">A separate account with PIN for every employee. The log shows who did what.</div></div></li>
+          <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></span><div><div class="name">Today’s plan</div><div class="desc">Who takes which group today.</div></div></li>
+        </ul>
+
+        <div class="addons">
+          <p class="group-title">Switch on what you need</p>
+          <ul id="addons" data-base-label="Booking" data-cur-pre="NOK " data-cur-suf="">
+            <li class="feat" data-price="199">
+              <span class="toggle"><input type="checkbox" id="f-gavekort"><span class="track"></span></span>
+              <div><div class="head"><label class="name" for="f-gavekort">Gift cards</label><span class="price">NOK 199</span></div><div class="desc">Sell gift cards on your website and at the front desk. The guest receives it as a PDF by e-mail and uses the code when booking.</div></div>
+            </li>
+            <li class="feat" data-price="149">
+              <span class="toggle"><input type="checkbox" id="f-tilbakemeldinger"><span class="track"></span></span>
+              <div><div class="head"><label class="name" for="f-tilbakemeldinger">Feedback</label><span class="price">NOK 149</span></div><div class="desc">An e-mail a few days after the visit with three faces. Yellow and red require a comment and land in a separate follow-up list.</div></div>
+            </li>
+            <li class="feat" data-price="149">
+              <span class="toggle"><input type="checkbox" id="f-mersalg"><span class="track"></span></span>
+              <div><div class="head"><label class="name" for="f-mersalg">Automatic upselling</label><span class="price">NOK 149</span></div><div class="desc">An e-mail a few days before the visit with selected products and a button to “My booking”, where the guest adds them themselves.</div></div>
+            </li>
+            <li class="feat" data-price="149">
+              <span class="toggle"><input type="checkbox" id="f-kapasitet"><span class="track"></span></span>
+              <div><div class="head"><label class="name" for="f-kapasitet">Capacity utilisation</label><span class="price">NOK 149</span></div><div class="desc">Share of lane hours booked, a heat map by weekday and hour, and what sells best.</div></div>
+            </li>
+            <li class="feat" data-price="249">
+              <span class="toggle"><input type="checkbox" id="f-nyhetsbrev"><span class="track"></span></span>
+              <div><div class="head"><label class="name" for="f-nyhetsbrev">Newsletter</label><span class="price">NOK 249</span></div><div class="desc">Consent in the forms, a subscriber list, a simple block editor and sending in small batches.</div></div>
+            </li>
+            <li class="feat" data-price="249">
+              <span class="toggle"><input type="checkbox" id="f-bedrift"><span class="track"></span></span>
+              <div><div class="head"><label class="name" for="f-bedrift">Corporate quotes</label><span class="price">NOK 249</span></div><div class="desc">A tidy quote with logo, price and terms. Lanes are held until the deadline and released automatically if they decline.</div></div>
+            </li>
+            <li class="feat" data-price="299">
+              <span class="toggle"><input type="checkbox" id="f-kundeklubb"><span class="track"></span></span>
+              <div><div class="head"><label class="name" for="f-kundeklubb">Loyalty club</label><span class="price">NOK 299</span></div><div class="desc">Guests earn points on activities, spend them on their next booking and reach tiers. You decide the names and rates.</div></div>
+            </li>
+          </ul>
+          <div class="custom"><span aria-hidden="true" style="color:var(--accent-tint);font-weight:800">+</span><span><b>Missing something?</b> We can tailor and build the functionality you want, if there is something you feel is missing. Get in touch and we will look at it together.</span></div>
+        </div>
+      </div>
+
+      <aside class="summary" aria-live="polite">
+        <p class="group-title">Your system</p>
+        <div class="total"><span id="total">200</span><small>NOK / month</small></div>
+        <p class="vat">All prices ex. VAT.</p>
+        <ul class="lines" id="lines">
+          <li class="base"><span>Booking</span><span>NOK 200</span></li>
+        </ul>
+        <div class="trial">
+          <span aria-hidden="true" style="color:var(--accent-tint);font-weight:800">✓</span>
+          <span><b>The first 3 months: NOK 0.</b> Everyone can try Luneo free for three months – and you can get access and set up the system without putting it into use, just to see how tidy it is.</span>
+        </div>
+        <a class="btn primary" href="mailto:post@digikrutt.no?subject=Luneo%20%E2%80%93%203-month%20free%20trial">Get in touch for a free trial</a>
+        <p class="note">Features are switched on and off in the back office by the manager. See the <a href="terms.html" style="color:var(--white)">terms of purchase</a>.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KOM I GANG ================= -->
+<section class="slide foam" id="get-started">
+  <div class="in">
+    <p class="eyebrow">How to get started</p>
+    <h2>Four steps. No installation.</h2>
+    <div class="steps">
+      <div class="step"><h3>We set up your business</h3><p>With your activities, prices and opening hours.</p></div>
+      <div class="step"><h3>You choose an address</h3><p><code>booking.yourdomain.com</code> or <code>name.luneo.no</code>.</p></div>
+      <div class="step"><h3>The manager gets an account</h3><p>And walks through “Getting started” – five steps in the back office, each with a button.</p></div>
+      <div class="step"><h3>Booking is connected to your website</h3><p>A link, or two lines pasted in.</p></div>
+    </div>
+    <div class="extras">
+      <div class="extra">
+        <h3>Just look, without committing</h3>
+        <p>The system can be tested and set up without you putting it into use. Get access, click around the back office and see how tidy it is – no obligations.</p>
+      </div>
+      <div class="extra">
+        <h3>Need a new website too?</h3>
+        <p><a href="https://digikrutt.no" target="_blank" rel="noopener">Digikrutt.no</a> builds a new website for you, with Luneo seamlessly integrated from day one – one supplier for website and booking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAKT / OM ================= -->
+<section class="slide dark" id="contact">
+  <div class="in">
+    <div class="about">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h2>Try Luneo free for three months.</h2>
+        <p class="lead">Send us an e-mail and we will set up your business and walk through it together. If you just want to see the system first, we can arrange that too.</p>
+      </div>
+      <div class="contact">
+        <h3>Get in touch</h3>
+        <p>Tell us what kind of centre you run and how many lanes or rooms you have, and we will reply quickly.</p>
+        <a class="btn primary" href="mailto:post@digikrutt.no?subject=Luneo%20%E2%80%93%203-month%20free%20trial">Contact us</a>
+        <div class="meta">
+          <span>E-mail: <a href="mailto:post@digikrutt.no">post@digikrutt.no</a></span>
+          <span>Web: <a href="https://luneo.no" target="_blank" rel="noopener">luneo.no</a></span>
+        </div>
+      </div>
+    </div>
+    <p class="bak">The booking system is built by the managing director of <a href="https://www.megazone.no" target="_blank" rel="noopener">Megazone</a> in Oslo, which is part of <a href="https://www.playrnorge.no" target="_blank" rel="noopener">Playrnorge.no</a>. Setup and development happen in the evenings and at weekends, while Megazone and our other activity centres keep running. That is why we can offer this at such a low price. E-mails and replies will be handled in the evenings. Luneo is operated by <a href="https://digikrutt.no" target="_blank" rel="noopener">Digikrutt.no</a>.</p>
+  </div>
+</section>
+
+</main><footer>
+  <div class="in">
+    <img src="../img/luneo-logo-hvit.webp" alt="Luneo.no">
+    <nav aria-label="Legal">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms of purchase</a>
+      <a href="mailto:post@digikrutt.no">post@digikrutt.no</a>
+    </nav>
+    <span>Booking made simple · Developed in Norway</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = (document.currentScript && document.currentScript.closest('[data-lang]')) || document;
+  var $ = function(sel){ return root.querySelector(sel); };
+
+  /* ---- priskalkulator ---- */
+  var BASE = 200;
+  var list = $('#addons');
+  var totalEl = $('#total');
+  var linesEl = $('#lines');
+  var PRE = list.getAttribute('data-cur-pre') || '';
+  var SUF = list.getAttribute('data-cur-suf') || '';
+  var LABEL = list.getAttribute('data-base-label') || 'Booking';
+  var fmt = function(n){ return n.toLocaleString('en-GB'); };
+  var money = function(n){ return PRE + fmt(n) + SUF; };
+
+  function render(){
+    var sum = BASE;
+    var html = '<li class="base"><span>' + LABEL + '</span><span>' + money(BASE) + '</span></li>';
+    var items = list.querySelectorAll('.feat');
+    for (var i = 0; i < items.length; i++){
+      var li = items[i];
+      var cb = li.querySelector('input');
+      li.classList.toggle('on', cb.checked);
+      if (cb.checked){
+        var p = parseInt(li.getAttribute('data-price'), 10);
+        sum += p;
+        html += '<li><span>' + li.querySelector('.name').textContent + '</span><span>' + money(p) + '</span></li>';
+      }
+    }
+    totalEl.textContent = fmt(sum);
+    linesEl.innerHTML = html;
+  }
+  list.addEventListener('change', render);
+  render();
+
+  /* ---- hero-film: start avspilling også der autoplay er nølende ---- */
+  var vid = $('.hero .film video');
+  if (vid){ var p = vid.play(); if (p && p.catch){ p.catch(function(){}); } }
+
+  /* ---- undersider: personvern og kjøpsvilkår ---- */
+  var main = $('main');
+  var pages = {};
+  var legal = root.querySelectorAll('section.legal');
+  for (var j = 0; j < legal.length; j++){ pages[legal[j].id] = legal[j]; }
+  function route(){
+    if (!legal.length) return;
+    var h = (location.hash || '').replace('#','');
+    var page = pages[h];
+    for (var k in pages){ pages[k].hidden = (pages[k] !== page); }
+    main.hidden = !!page;
+    if (root !== document && root.hidden) return;
+    if (page){ window.scrollTo(0,0); document.title = page.getAttribute('data-title') || document.title; }
+    else { document.title = main.getAttribute('data-title') || document.title; }
+  }
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+
+</body>
+</html>
