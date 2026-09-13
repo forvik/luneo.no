@@ -180,7 +180,7 @@
   .surface li{font-size:.85rem;padding:5px 10px;border-radius:999px;border:1px solid var(--ink-line);color:var(--muted-dark)}
   @media (max-width:820px){.surfaces{grid-template-columns:1fr}}
   .duo{
-    margin-top:40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;
+    margin-top:40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start;
     border-top:1px solid var(--ink-line);padding-top:40px;
   }
   .duo h3{margin-bottom:10px}
@@ -248,6 +248,8 @@
     transition:border-color .15s ease;
   }
   .feat.on{border-color:var(--accent)}
+  .feat{cursor:pointer}
+  .feat:hover{border-color:rgba(227,107,231,.55)}
   .feat .head{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
   .feat .name{font-family:var(--display);font-weight:700;font-size:1rem;cursor:pointer}
   .feat .desc{color:var(--muted-dark);font-size:.86rem;margin-top:4px;line-height:1.45}
@@ -385,7 +387,7 @@
 <section class="slide dark" style="padding-block:0 56px">
   <div class="in facts">
     <div><b>10+ years</b><span>in the activity industry before the first line of code was written</span></div>
-    <div><b>NOK 200</b><span>per month ex. VAT for the booking itself. No percentage of your sales.</span></div>
+    <div><b>€40</b><span>per month ex. VAT for the booking itself. No percentage of your sales.</span></div>
     <div><b>3 months</b><span>free trial for everyone</span></div>
     <div><b>NO / EN</b><span>Norwegian and English – for Norwegian and international guests</span></div>
   </div>
@@ -403,8 +405,8 @@
       <div class="problem">
         <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="8" height="16" rx="1.5"/><rect x="13" y="4" width="8" height="16" rx="1.5"/></svg></div>
         <div>
-          <h3>One booking occupies several units at once</h3>
-          <p>Eight people bowling means two lanes. A birthday package is a lane from 16:00 and a room from 17:00. Ordinary booking systems cannot handle that. Luneo assigns the units itself, holds them, and releases them if the booking falls through.</p>
+          <h3>One booking occupies several resources at once</h3>
+          <p>Eight people bowling means two lanes. A birthday package is a lane from 16:00 and a room from 17:00. Ordinary booking systems cannot handle that. Luneo assigns the resources itself – lanes, rooms, karts, tables – holds them, and releases them if the booking falls through.</p>
         </div>
       </div>
       <div class="problem">
@@ -459,9 +461,20 @@
         <p>The e-mail confirmation contains a link to the booking. There the guest can change the number of people, add extra products, food and extras, or cancel – right up to the deadline you set, for example 48 hours before. That means fewer phone calls to the front desk.</p>
       </div>
       <div>
-        <h3>Online payment through Dintero</h3>
-        <p>We connect online payment through Dintero, so guests pay the way they prefer. Good transaction rates have been negotiated.</p>
+        <h3>Online payment is optional</h3>
+        <p>You decide whether guests pay online. Switch it on and we connect Dintero, so guests pay the way they prefer – at transaction rates we have negotiated. Switch it off and you take payment at the front desk when the guest arrives, just as before. The booking works the same either way.</p>
         <ul class="pay" aria-label="Payment methods"><li>Vipps</li><li>Credit cards</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li><li>and more</li></ul>
+      </div>
+    </div>
+
+    <div class="duo">
+      <div>
+        <h3>Invoicing business customers</h3>
+        <p>Business customers enter their invoicing details – company name, registration number, invoice address and reference – when they book. Everything sits on the booking itself, so you can invoice them easily afterwards.</p>
+      </div>
+      <div>
+        <h3>Independently security tested</h3>
+        <p>The system has been security tested by an independent third party. Everything is stored securely in the cloud with daily backups, so you do not lose bookings if something goes wrong.</p>
       </div>
     </div>
 
@@ -483,8 +496,8 @@
     <h2>Built around everyday life in an activity centre.</h2>
     <div class="args">
       <div class="arg">
-        <h3>Booking assigns the lanes itself</h3>
-        <p>The guest picks a time and a group size; the system works out how many units that takes and which ones are free. Staff can override whenever they want.</p>
+        <h3>Booking assigns the resources itself</h3>
+        <p>The guest picks a time and a group size; the system works out how many resources that takes and which ones are free. Staff can override whenever they want.</p>
       </div>
       <div class="arg">
         <h3>Packages that hold several things in sequence</h3>
@@ -530,9 +543,9 @@
       <div>
         <p class="eyebrow">Pricing</p>
         <h2>One fixed, low monthly price. Not a single krone of your revenue.</h2>
-        <p class="lead" style="margin-top:20px">The booking itself costs NOK 200 per month ex. VAT. That is the entire base price. Anything beyond that you buy one feature at a time, in the back office, when you need it – and switch off just as easily.</p>
+        <p class="lead" style="margin-top:20px">The booking itself costs €40 per month ex. VAT. That is the entire base price. Anything beyond that you buy one feature at a time, in the back office, when you need it – and switch off just as easily.</p>
       </div>
-      <div class="bigprice"><span class="n">200</span><span class="u">NOK / month ex. VAT for booking</span></div>
+      <div class="bigprice"><span class="n">€40</span><span class="u">per month ex. VAT for booking</span></div>
     </div>
 
     <div class="promises">
@@ -553,34 +566,34 @@
 
         <div class="addons">
           <p class="group-title">Switch on what you need</p>
-          <ul id="addons" data-base-label="Booking" data-cur-pre="NOK " data-cur-suf="">
-            <li class="feat" data-price="199">
+          <ul id="addons" data-base-label="Booking" data-cur-pre="€" data-cur-suf="">
+            <li class="feat" data-price="18">
               <span class="toggle"><input type="checkbox" id="f-gavekort"><span class="track"></span></span>
-              <div><div class="head"><label class="name" for="f-gavekort">Gift cards</label><span class="price">NOK 199</span></div><div class="desc">Sell gift cards on your website and at the front desk. The guest receives it as a PDF by e-mail and uses the code when booking.</div></div>
+              <div><div class="head"><label class="name" for="f-gavekort">Gift cards</label><span class="price">€18</span></div><div class="desc">Sell gift cards on your website and at the front desk. The guest receives it as a PDF by e-mail and uses the code when booking.</div></div>
             </li>
-            <li class="feat" data-price="149">
+            <li class="feat" data-price="13">
               <span class="toggle"><input type="checkbox" id="f-tilbakemeldinger"><span class="track"></span></span>
-              <div><div class="head"><label class="name" for="f-tilbakemeldinger">Feedback</label><span class="price">NOK 149</span></div><div class="desc">An e-mail a few days after the visit with three faces. Yellow and red require a comment and land in a separate follow-up list.</div></div>
+              <div><div class="head"><label class="name" for="f-tilbakemeldinger">Feedback</label><span class="price">€13</span></div><div class="desc">An e-mail a few days after the visit with three faces. Yellow and red require a comment and land in a separate follow-up list.</div></div>
             </li>
-            <li class="feat" data-price="149">
+            <li class="feat" data-price="13">
               <span class="toggle"><input type="checkbox" id="f-mersalg"><span class="track"></span></span>
-              <div><div class="head"><label class="name" for="f-mersalg">Automatic upselling</label><span class="price">NOK 149</span></div><div class="desc">An e-mail a few days before the visit with selected products and a button to “My booking”, where the guest adds them themselves.</div></div>
+              <div><div class="head"><label class="name" for="f-mersalg">Automatic upselling</label><span class="price">€13</span></div><div class="desc">An e-mail a few days before the visit with selected products and a button to “My booking”, where the guest adds them themselves.</div></div>
             </li>
-            <li class="feat" data-price="149">
+            <li class="feat" data-price="13">
               <span class="toggle"><input type="checkbox" id="f-kapasitet"><span class="track"></span></span>
-              <div><div class="head"><label class="name" for="f-kapasitet">Capacity utilisation</label><span class="price">NOK 149</span></div><div class="desc">Share of lane hours booked, a heat map by weekday and hour, and what sells best.</div></div>
+              <div><div class="head"><label class="name" for="f-kapasitet">Capacity utilisation</label><span class="price">€13</span></div><div class="desc">Share of lane hours booked, a heat map by weekday and hour, and what sells best.</div></div>
             </li>
-            <li class="feat" data-price="249">
+            <li class="feat" data-price="22">
               <span class="toggle"><input type="checkbox" id="f-nyhetsbrev"><span class="track"></span></span>
-              <div><div class="head"><label class="name" for="f-nyhetsbrev">Newsletter</label><span class="price">NOK 249</span></div><div class="desc">Consent in the forms, a subscriber list, a simple block editor and sending in small batches.</div></div>
+              <div><div class="head"><label class="name" for="f-nyhetsbrev">Newsletter</label><span class="price">€22</span></div><div class="desc">Consent in the forms, a subscriber list, a simple block editor and sending in small batches.</div></div>
             </li>
-            <li class="feat" data-price="249">
+            <li class="feat" data-price="22">
               <span class="toggle"><input type="checkbox" id="f-bedrift"><span class="track"></span></span>
-              <div><div class="head"><label class="name" for="f-bedrift">Corporate quotes</label><span class="price">NOK 249</span></div><div class="desc">A tidy quote with logo, price and terms. Lanes are held until the deadline and released automatically if they decline.</div></div>
+              <div><div class="head"><label class="name" for="f-bedrift">Corporate quotes</label><span class="price">€22</span></div><div class="desc">A tidy quote with logo, price and terms. Lanes are held until the deadline and released automatically if they decline.</div></div>
             </li>
-            <li class="feat" data-price="299">
+            <li class="feat" data-price="27">
               <span class="toggle"><input type="checkbox" id="f-kundeklubb"><span class="track"></span></span>
-              <div><div class="head"><label class="name" for="f-kundeklubb">Loyalty club</label><span class="price">NOK 299</span></div><div class="desc">Guests earn points on activities, spend them on their next booking and reach tiers. You decide the names and rates.</div></div>
+              <div><div class="head"><label class="name" for="f-kundeklubb">Loyalty club</label><span class="price">€27</span></div><div class="desc">Guests earn points on activities, spend them on their next booking and reach tiers. You decide the names and rates.</div></div>
             </li>
           </ul>
           <div class="custom"><span aria-hidden="true" style="color:var(--accent-tint);font-weight:800">+</span><span><b>Missing something?</b> We can tailor and build the functionality you want, if there is something you feel is missing. Get in touch and we will look at it together.</span></div>
@@ -589,14 +602,14 @@
 
       <aside class="summary" aria-live="polite">
         <p class="group-title">Your system</p>
-        <div class="total"><span id="total">200</span><small>NOK / month</small></div>
+        <div class="total"><span id="total">40</span><small>EUR / month</small></div>
         <p class="vat">All prices ex. VAT.</p>
         <ul class="lines" id="lines">
-          <li class="base"><span>Booking</span><span>NOK 200</span></li>
+          <li class="base"><span>Booking</span><span>€40</span></li>
         </ul>
         <div class="trial">
           <span aria-hidden="true" style="color:var(--accent-tint);font-weight:800">✓</span>
-          <span><b>The first 3 months: NOK 0.</b> Everyone can try Luneo free for three months – and you can get access and set up the system without putting it into use, just to see how tidy it is.</span>
+          <span><b>The first 3 months: €0.</b> Everyone can try Luneo free for three months – and you can get access and set up the system without putting it into use, just to see how tidy it is.</span>
         </div>
         <a class="btn primary" href="mailto:post@digikrutt.no?subject=Luneo%20%E2%80%93%203-month%20free%20trial">Get in touch for a free trial</a>
         <p class="note">Features are switched on and off in the back office by the manager. See the <a href="terms.html" style="color:var(--white)">terms of purchase</a>.</p>
@@ -670,7 +683,7 @@
   var $ = function(sel){ return root.querySelector(sel); };
 
   /* ---- priskalkulator ---- */
-  var BASE = 200;
+  var BASE = 40;
   var list = $('#addons');
   var totalEl = $('#total');
   var linesEl = $('#lines');
@@ -698,6 +711,14 @@
     linesEl.innerHTML = html;
   }
   list.addEventListener('change', render);
+  list.addEventListener('click', function(e){
+    if (e.target.closest('input, label, a')) return;   /* toggle themselves */
+    var li = e.target.closest('.feat');
+    if (!li) return;
+    var cb = li.querySelector('input');
+    cb.checked = !cb.checked;
+    render();
+  });
   render();
 
   /* ---- hero-film: start avspilling også der autoplay er nølende ---- */
