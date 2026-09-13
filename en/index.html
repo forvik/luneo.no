@@ -138,6 +138,35 @@
   }
   .fits .more{margin-top:14px;color:#D6DEE5;font-size:.95rem}
 
+  /* ---------- bildebånd ---------- */
+  .shots{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;
+    background:var(--ink-line);border-block:1px solid var(--ink-line);
+  }
+  .shot{position:relative;margin:0;overflow:hidden;aspect-ratio:4/3;background:var(--ink)}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.3,1),filter .4s ease;filter:saturate(.9)}
+  .shot::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(27,34,45,0) 45%,rgba(27,34,45,.55) 72%,rgba(27,34,45,.92) 100%);
+  }
+  .shot figcaption{
+    position:absolute;left:0;right:0;bottom:0;z-index:1;padding:20px 22px;
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .shot figcaption b{
+    font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--white);
+    display:flex;align-items:center;gap:10px;
+  }
+  .shot figcaption b::before{content:"";width:18px;height:3px;border-radius:2px;background:var(--accent);transition:width .4s ease}
+  .shot figcaption span{color:#D6DEE5;font-size:.92rem}
+  .shot:hover img,.shot:focus-within img{transform:scale(1.05);filter:none}
+  .shot:hover figcaption b::before{width:42px}
+  @media (prefers-reduced-motion:reduce){.shot img{transition:none}.shot:hover img{transform:none}}
+  @media (max-width:760px){
+    .shots{grid-template-columns:1fr}
+    .shot{aspect-ratio:16/10}
+  }
+
   /* ---------- fakta-stripe ---------- */
   .facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink-line)}
   .facts > div{padding:28px 24px 28px 0;border-right:1px solid var(--ink-line)}
@@ -391,6 +420,22 @@
     <div><b>3 months</b><span>free trial for everyone</span></div>
     <div><b>NO / EN</b><span>Norwegian and English – for Norwegian and international guests</span></div>
   </div>
+</section>
+
+<!-- ================= PHOTO BAND ================= -->
+<section class="shots" aria-label="From activity centres">
+  <figure class="shot">
+    <img src="../img/laser.webp" alt="Guests in a laser tag arena with taggers and vests" loading="lazy" width="1200" height="900">
+    <figcaption><b>Laser tag</b><span>Several arenas, one booking</span></figcaption>
+  </figure>
+  <figure class="shot">
+    <img src="../img/curling.webp" alt="Guests playing streetcurling in a bar" loading="lazy" width="1200" height="900">
+    <figcaption><b>Streetcurling</b><span>Lane and table in the same package</span></figcaption>
+  </figure>
+  <figure class="shot">
+    <img src="../img/gokart.webp" alt="Driver in a helmet giving a thumbs up from a go-kart" loading="lazy" width="1200" height="900">
+    <figcaption><b>Go-karts</b><span>Heat after heat, with no double bookings</span></figcaption>
+  </figure>
 </section>
 
 <!-- ================= BRANSJEN ================= -->

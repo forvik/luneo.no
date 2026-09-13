@@ -78,10 +78,15 @@ def doc(lang, title, desc, body, path, alt_nb, alt_en, prefix):
 </html>
 '''
 
+SHOTS = ('SHOT_LASER', 'laser.webp'), ('SHOT_CURLING', 'curling.webp'), ('SHOT_GOKART', 'gokart.webp')
+
 def assets(s, prefix):
-    return (s.replace('LOGO_WHITE', prefix + 'img/luneo-logo-hvit.webp')
-             .replace('VIDEO_SRC', prefix + 'img/bakgrunn.mp4')
-             .replace('POSTER_SRC', prefix + 'img/bakgrunn.jpg'))
+    s = (s.replace('LOGO_WHITE', prefix + 'img/luneo-logo-hvit.webp')
+          .replace('VIDEO_SRC', prefix + 'img/bakgrunn.mp4')
+          .replace('POSTER_SRC', prefix + 'img/bakgrunn.jpg'))
+    for key, f in SHOTS:
+        s = s.replace(key, prefix + 'img/' + f)
+    return s
 
 def build_site():
     os.makedirs(os.path.join(SITE, 'en'), exist_ok=True)
@@ -141,6 +146,7 @@ def build_artifact():
     def b64(path, mime):
         return f'data:{mime};base64,' + base64.b64encode(open(path, 'rb').read()).decode()
     logo = b64(os.path.join(HERE, 'white.webp'), 'image/webp')
+    shots = {k: b64(os.path.join(SITE, 'img', f), 'image/webp') for k, f in SHOTS}
     video = b64(os.path.join(SITE, 'img', 'bakgrunn.mp4'), 'video/mp4')
     poster = b64(os.path.join(SITE, 'img', 'bakgrunn.jpg'), 'image/jpeg')
 
@@ -153,6 +159,8 @@ def build_artifact():
             s = re.sub(r"\$\('#([a-z-]+)'\)", r"$('#\1-en')", s)
         s = s.replace('LANG_NB_HREF', '#nb').replace('LANG_EN_HREF', '#en')
         s = s.replace('LOGO_WHITE', logo).replace('VIDEO_SRC', video).replace('POSTER_SRC', poster)
+        for k, v in shots.items():
+            s = s.replace(k, v)
         return s
 
     toggle = '''<script>
