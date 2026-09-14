@@ -237,6 +237,18 @@
   @media (max-width:900px){.args{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:600px){.args{grid-template-columns:1fr}}
 
+  /* ---------- demo ----------
+     Den lille setningen under «ting verdt å prøve». Den sier at demoen ikke
+     sender e-post, og det er det viktigste avsnittet på hele siden for den som
+     lurer på om det er trygt å klikke. Derfor en tydelig ramme rundt, ikke bare
+     mindre skrift. */
+  .demo-note{
+    margin-top:36px;max-width:78ch;padding:16px 20px;
+    border-left:3px solid var(--accent);background:var(--foam);
+    border-radius:0 8px 8px 0;color:var(--muted-light);font-size:.97rem;line-height:1.6;
+  }
+  .demo-note b{color:var(--ink)}
+
   /* ---------- pris ---------- */
   .price-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
   .bigprice{font-family:var(--display);font-weight:800;line-height:.9;font-variant-numeric:tabular-nums;text-align:right}
@@ -373,6 +385,7 @@
     <nav aria-label="Seksjoner">
       <a href="#bransjen">Bransjen</a>
       <a href="#produktet">Produktet</a>
+      <a href="#demo">Demo</a>
       <a href="#pris">Pris</a>
       <a href="#igang">Kom i gang</a>
       <a href="#kontakt">Kontakt</a>
@@ -400,6 +413,7 @@
     <p class="lead">Bowlinghaller, laserhaller, escape rooms, gokartbaner og trampolineparker selger tid på baner og rom – ofte flere om gangen. Luneo er bygget for akkurat det, av oss som har drevet aktivitetssenter i over ti år.</p>
     <div class="cta">
       <a class="btn primary" href="#pris">Se hva det koster</a>
+      <a class="btn ghost" href="https://demo.luneo.no/backoffice/" target="_blank" rel="noopener">Prøv demoen</a>
       <a class="btn ghost" href="#produktet">Hva kunden får</a>
     </div>
     <div class="fits">
@@ -531,6 +545,50 @@
       <pre aria-label="Eksempel på innbygging"><code><span class="t">&lt;script</span> <span class="a">src</span>="https://booking.deresdomene.no/embed.js"<span class="t">&gt;&lt;/script&gt;</span>
 <span class="t">&lt;div</span> <span class="a">data-luneo</span>="booking"<span class="t">&gt;&lt;/div&gt;</span></code></pre>
     </div>
+  </div>
+</section>
+
+<!-- ================= DEMO ================= -->
+<section class="slide light" id="demo">
+  <div class="in">
+    <p class="eyebrow">Prøv det selv</p>
+    <h2>Åpne demoen. Ingen registrering, ingen selger.</h2>
+    <p class="lead" style="margin-top:20px">Et komplett aktivitetssenter: åtte bowlingbaner, to laserhaller, dart, shuffleboard, golfsimulatorer og karaoke – med bookinger, priser, pakker og folk i kø. Du kommer rett inn i backoffice og kan gjøre nøyaktig hva du vil med det.</p>
+    <div class="cta" style="margin-top:28px">
+      <a class="btn primary" href="https://demo.luneo.no/backoffice/" target="_blank" rel="noopener">Åpne backoffice</a>
+      <a class="btn ghost" href="https://demo.luneo.no/reservasjon/" target="_blank" rel="noopener">Se hva gjesten ser</a>
+      <a class="btn ghost" href="https://demo.luneo.no/tavle/" target="_blank" rel="noopener">Åpne tavlen</a>
+    </div>
+
+    <p class="eyebrow" style="margin-top:52px">Ting som er verdt å prøve</p>
+    <div class="args" style="margin-top:20px">
+      <div class="arg">
+        <h3>Legg inn en booking</h3>
+        <p>Klikk på en tom rute i dagsplanen. Systemet finner banene selv, og sier fra hvis noen andre allerede har dem.</p>
+      </div>
+      <div class="arg">
+        <h3>Dra en booking til en annen bane</h3>
+        <p>Ta tak i en blokk i tidslinjen og flytt den. Den lander bare der den faktisk kan ligge.</p>
+      </div>
+      <div class="arg">
+        <h3>Se hallen som brukes til to ting</h3>
+        <p>Under Ressurser står Hall&nbsp;1 og Hall&nbsp;2 merket «delt» – de brukes både til laserspill og innendørs paintball. Er den ene tatt, er den tatt for begge.</p>
+      </div>
+      <div class="arg">
+        <h3>Steng en bane</h3>
+        <p>Legg inn et avvik under Ressurser. Er det bookinger i perioden, får du beskjed før noe lagres – med navn og telefonnummer.</p>
+      </div>
+      <div class="arg">
+        <h3>Endre en pris</h3>
+        <p>Alt daglig leder kan røre, kan du røre. Gå så til bookingsiden og se at prisen har endret seg med en gang.</p>
+      </div>
+      <div class="arg">
+        <h3>Bestill som en gjest</h3>
+        <p>Fyll ut reservasjonsskjemaet, og se bestillingen dukke opp i dagsplanen.</p>
+      </div>
+    </div>
+
+    <p class="demo-note">Senteret er oppdiktet. Demoen sender <b>ingen</b> e-post – bekreftelsen legges i E-post-fanen så du kan lese den slik gjesten ville fått den, og gjestens egen side åpnes fra bookingen. Alt du gjør nullstilles hver natt, så neste person møter en hel demo.</p>
   </div>
 </section>
 
