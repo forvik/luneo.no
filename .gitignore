@@ -1,0 +1,4 @@
+# Byggeresultatet. `kilde/build.py` skriver hit, og innholdet kopieres derfra
+# til roten – som ER det som publiseres. To kopier av den samme siden i repoet
+# ville bare vært et sted å gå surr i hvilken som gjelder.
+kilde/site/

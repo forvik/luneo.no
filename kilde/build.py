@@ -112,7 +112,7 @@ def build_site():
             h = header
             if page != 'index':
                 h = h.replace('href="#top"', 'href="index.html"').replace('href="#topp"', 'href="index.html"')
-                h = re.sub(r'href="#(bransjen|produktet|pris|igang|kontakt|industry|product|pricing|get-started|contact)"', r'href="index.html#\1"', h)
+                h = re.sub(r'href="#(bransjen|produktet|demo|pris|igang|kontakt|industry|product|pricing|get-started|contact)"', r'href="index.html#\1"', h)
             h = h.replace('LANG_NB_HREF', href_nb).replace('LANG_EN_HREF', href_en)
             if page == 'index':
                 body = h + main + footer + script
@@ -133,12 +133,13 @@ def build_site():
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
         '<rect width="64" height="64" rx="14" fill="#C010C5"/>'
         '<path d="M20 14h10v26h16v10H20z" fill="#fff"/></svg>')
-    open(os.path.join(SITE, 'README.md'), 'w', encoding='utf-8').write(
-        '# luneo.no\n\nMarkedssiden for bookingsystemet Luneo. Statisk side.\n\n'
-        '- Norsk (standard): `index.html`, `personvern.html`, `kjopsvilkar.html`\n'
-        '- Engelsk: `en/index.html`, `en/privacy.html`, `en/terms.html`\n\n'
-        'Publiseres med Cloudflare Pages (ingen byggesteg, utdatamappe `/`).\n'
-        'Sidene genereres fra `body.nb.html`, `body.en.html` og `style.css` med `build.py` (ligger i kildemappen, ikke i repoet).\n')
+    # README-en og _headers skrives IKKE lenger.
+    #
+    # De sto her, og den dokumenterte arbeidsgangen er «kopier innholdet i
+    # site/ til roten». Da overskrev byggingen repoets egen README – som
+    # forklarer nettopp denne arbeidsgangen – med en kortere stubb, hver
+    # eneste gang noen bygget. Begge to hører til repoet og ikke til
+    # byggeresultatet.
     open(os.path.join(SITE, '_headers'), 'w', encoding='utf-8').write(
         '/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n')
 

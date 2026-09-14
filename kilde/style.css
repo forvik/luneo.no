@@ -216,6 +216,18 @@
   @media (max-width:900px){.args{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:600px){.args{grid-template-columns:1fr}}
 
+  /* ---------- demo ----------
+     Den lille setningen under «ting verdt å prøve». Den sier at demoen ikke
+     sender e-post, og det er det viktigste avsnittet på hele siden for den som
+     lurer på om det er trygt å klikke. Derfor en tydelig ramme rundt, ikke bare
+     mindre skrift. */
+  .demo-note{
+    margin-top:36px;max-width:78ch;padding:16px 20px;
+    border-left:3px solid var(--accent);background:var(--foam);
+    border-radius:0 8px 8px 0;color:var(--muted-light);font-size:.97rem;line-height:1.6;
+  }
+  .demo-note b{color:var(--ink)}
+
   /* ---------- pris ---------- */
   .price-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
   .bigprice{font-family:var(--display);font-weight:800;line-height:.9;font-variant-numeric:tabular-nums;text-align:right}
