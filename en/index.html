@@ -237,18 +237,6 @@
   @media (max-width:900px){.args{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:600px){.args{grid-template-columns:1fr}}
 
-  /* ---------- demo ----------
-     Den lille setningen under «ting verdt å prøve». Den sier at demoen ikke
-     sender e-post, og det er det viktigste avsnittet på hele siden for den som
-     lurer på om det er trygt å klikke. Derfor en tydelig ramme rundt, ikke bare
-     mindre skrift. */
-  .demo-note{
-    margin-top:36px;max-width:78ch;padding:16px 20px;
-    border-left:3px solid var(--accent);background:var(--foam);
-    border-radius:0 8px 8px 0;color:var(--muted-light);font-size:.97rem;line-height:1.6;
-  }
-  .demo-note b{color:var(--ink)}
-
   /* ---------- pris ---------- */
   .price-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
   .bigprice{font-family:var(--display);font-weight:800;line-height:.9;font-variant-numeric:tabular-nums;text-align:right}
@@ -385,7 +373,6 @@
     <nav aria-label="Sections">
       <a href="#industry">Industry</a>
       <a href="#product">Product</a>
-      <a href="#demo">Demo</a>
       <a href="#pricing">Pricing</a>
       <a href="#get-started">Get started</a>
       <a href="#contact">Contact</a>
@@ -413,13 +400,12 @@
     <p class="lead">Bowling alleys, laser tag arenas, escape rooms, go-kart tracks and trampoline parks sell time on lanes and rooms – often several at once. Luneo is built for exactly that, by people who have run activity centres for more than ten years.</p>
     <div class="cta">
       <a class="btn primary" href="#pricing">See what it costs</a>
-      <a class="btn ghost" href="https://demo.luneo.no/backoffice/" target="_blank" rel="noopener">Try the demo</a>
       <a class="btn ghost" href="#product">What you get</a>
     </div>
     <div class="fits">
       <p class="fits-label">Made for</p>
       <ul aria-label="Industries Luneo is made for">
-        <li>Bowling</li><li>Laser tag</li><li>Escape rooms</li><li>Go-karts</li><li>Trampoline parks</li><li>Minigolf</li><li>Curling</li><li>Paintball</li><li>Climbing</li>
+        <li>Bowling</li><li>Laser tag</li><li>Escape rooms</li><li>Go-karts</li><li>Trampoline parks</li><li>Minigolf</li><li>Curling</li><li>Paintball</li><li>Climbing</li><li>Padel</li><li>Golf simulators</li><li>Darts</li><li>Shuffleboard</li><li>Pool</li><li>VR</li><li>Karaoke</li><li>Indoor playgrounds</li>
       </ul>
       <p class="more">…and anyone else who sells time on lanes, rooms and equipment.</p>
     </div>
@@ -545,50 +531,6 @@
       <pre aria-label="Embed example"><code><span class="t">&lt;script</span> <span class="a">src</span>="https://booking.yourdomain.com/embed.js"<span class="t">&gt;&lt;/script&gt;</span>
 <span class="t">&lt;div</span> <span class="a">data-luneo</span>="booking"<span class="t">&gt;&lt;/div&gt;</span></code></pre>
     </div>
-  </div>
-</section>
-
-<!-- ================= DEMO ================= -->
-<section class="slide light" id="demo">
-  <div class="in">
-    <p class="eyebrow">Try it yourself</p>
-    <h2>Open the demo. No sign-up, no salesperson.</h2>
-    <p class="lead" style="margin-top:20px">A complete activity centre: eight bowling lanes, two laser arenas, darts, shuffleboard, golf simulators and karaoke – with bookings, prices, packages and people in the queue. You land straight in the back office and can do whatever you like with it.</p>
-    <div class="cta" style="margin-top:28px">
-      <a class="btn primary" href="https://demo.luneo.no/backoffice/" target="_blank" rel="noopener">Open the back office</a>
-      <a class="btn ghost" href="https://demo.luneo.no/reservasjon/" target="_blank" rel="noopener">See what the guest sees</a>
-      <a class="btn ghost" href="https://demo.luneo.no/tavle/" target="_blank" rel="noopener">Open the display board</a>
-    </div>
-
-    <p class="eyebrow" style="margin-top:52px">Things worth trying</p>
-    <div class="args" style="margin-top:20px">
-      <div class="arg">
-        <h3>Add a booking</h3>
-        <p>Click an empty slot in the day plan. The system picks the lanes itself, and tells you if someone already has them.</p>
-      </div>
-      <div class="arg">
-        <h3>Drag a booking to another lane</h3>
-        <p>Grab a block in the timeline and move it. It only lands where it can actually go.</p>
-      </div>
-      <div class="arg">
-        <h3>Find the arena used for two things</h3>
-        <p>Under Resources, Hall&nbsp;1 and Hall&nbsp;2 are marked «shared» – they are used for both laser tag and indoor paintball. Book one, and it is taken for both.</p>
-      </div>
-      <div class="arg">
-        <h3>Close a lane</h3>
-        <p>Add a closure under Resources. If there are bookings in the period, you are told before anything is saved – with names and phone numbers.</p>
-      </div>
-      <div class="arg">
-        <h3>Change a price</h3>
-        <p>Anything the manager can touch, you can touch. Then open the booking page and watch the price change straight away.</p>
-      </div>
-      <div class="arg">
-        <h3>Book as a guest</h3>
-        <p>Fill in the reservation form, and watch the booking appear in the day plan.</p>
-      </div>
-    </div>
-
-    <p class="demo-note">The centre is fictional. The demo sends <b>no</b> email – the confirmation is placed in the Email tab so you can read it exactly as the guest would have received it, and the guest's own page opens from the booking. Everything you do is reset each night, so the next person meets a complete demo.</p>
   </div>
 </section>
 
